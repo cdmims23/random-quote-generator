@@ -143,7 +143,7 @@ function printQuote() {
  *  using the window interval function to change the quote and background color automatically.
  ***/
 
- setInterval(printQuote, 8000);
+ setInterval(printQuote, 6000);
 
 /***
  * click event listener for the print quote button
