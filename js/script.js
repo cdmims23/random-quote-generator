@@ -43,7 +43,7 @@ const quotes = [
                   quote: "Life is like riding a bicycle. To keep your balance, you must keep moving.",
                   source: "Albert Einstein",
                   year: 1930,
-                  citation: "2007, Einstein: His Life and Universe by Walter Isaacson, Section: Notes, Epigraph: 1, Quote Page 565, Location 10155, Simon & Schuster, New York. (Kindle Edition)",
+                  citation: "Einstein: His Life and Universe by Walter Isaacson",
                 },
 
                 {
@@ -68,13 +68,36 @@ const quotes = [
                 },
               ];
 
+/*** 
+ *  References to quote box and body tags
+***/
+
+const quoteBox = document.getElementById('quote-box');
+const body = document.getElementsByTagName('body')[0];
 
 /***
  * `getRandomNumber` function
  ***/
 
-function getRandomNumber() {
-  
+function getRandomNumber(upperBound) {
+  return Math.floor(Math.random() * upperBound);
+}
+
+/*** 
+ *  `getRandomColor` function
+ * returns a random RGB color.
+***/
+
+function getRandomColor() {
+  return `rgb(${getRandomNumber(257)}, ${getRandomNumber(257)}, ${getRandomNumber(257)})`;
+}
+
+/*** 
+ * `setBackgroundColor` function
+***/
+
+function setBackgroundColor(color) {
+
 }
 
 
@@ -83,7 +106,7 @@ function getRandomNumber() {
 ***/
 
 function getRandomQuote() {
-
+  return quotes[getRandomNumber(quotes.length)];
 }
 
 
@@ -92,7 +115,40 @@ function getRandomQuote() {
 ***/
 
 function printQuote() {
+  let quote = getRandomQuote()
+  let color = getRandomColor()
+  let html = ``;
 
+    html += `<p class="quote">${quote.quote}</p> <p class="source">${quote.source}`
+
+    for (key in quote) {
+      if (key === "citation") {
+        html += `<span class="${key}">${quote[key]}</span>`
+      }
+
+      if (key === "year") {
+        html += `<span class="${key}">${quote[key]}</span></p>`
+      }
+
+      if (key === "tags") {
+        html += `<p class="${key}">${quote[key]}</p>`
+      }
+    }
+
+    quoteBox.innerHTML = html;
+    body.style.backgroundColor = color;
+  }
+
+/***
+ *  using the window interval function to change the quote and background color automatically.
+ ***/
+
+ setInterval(printQuote, 8000);
+
+
+for (let i = 0; i < quotes.length; i++) {
+  console.log(getRandomNumber());
+  console.log(getRandomQuote());
 }
 
 
