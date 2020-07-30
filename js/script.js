@@ -145,14 +145,6 @@ function printQuote() {
 
  setInterval(printQuote, 8000);
 
-
-for (let i = 0; i < quotes.length; i++) {
-  console.log(getRandomNumber());
-  console.log(getRandomQuote());
-}
-
-
-
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
